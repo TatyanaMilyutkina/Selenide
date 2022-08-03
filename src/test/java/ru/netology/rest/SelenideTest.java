@@ -36,17 +36,17 @@ public class SelenideTest {
 
         //Configuration.holdBrowserOpen = true;
         //open("http://localhost:9999");
-        SelenideElement form = $(".form");
-        form.$x("//input[@placeholder='Город']").val("Самара");
-        form.$("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").val(data);
-        form.$x("//input[@name='name']").val("Иванов Федор");
-        form.$x("//input[@name='phone']").val("+79375286987");
-        form.$x("//span[@class='checkbox__box']").click();
-        form.$x("//span[@class='button__text']").click();
-        form.$x("//*[contains(text(), 'Забронировать')]").shouldBe(visible, Duration.ofSeconds(15));
-        form.$(byText("Успешно"));
-        form.$(byText("Встреча успешно забронирована на " + data));
+        //SelenideElement form = $(".form");
+        $x("//input[@placeholder='Город']").val("Самара");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        $("[data-test-id='date'] input").val(data);
+        $x("//input[@name='name']").val("Иванов Федор");
+        $x("//input[@name='phone']").val("+79375286987");
+        $x("//span[@class='checkbox__box']").click();
+        $x("//span[@class='button__text']").click();
+        $x("//*[contains(text(), 'Забронировать')]").shouldBe(visible, Duration.ofSeconds(15));
+        $(byText("Успешно"));
+        $(byText("Встреча успешно забронирована на " + data));
 
     }
 }
