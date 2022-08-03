@@ -2,6 +2,7 @@ package ru.netology.rest;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,15 +21,14 @@ public class SelenideTest {
     public String generateDate(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     String data = generateDate(3);
 
 
     @Test
-    void test1(){
+    void test1() {
 
         Configuration.holdBrowserOpen = true;
-        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
-        System.setProperty("selenide.browser", "Chrome");
         open("http://localhost:9999");
         $x("//input[@placeholder='Город']").val("Самара");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -39,7 +39,7 @@ public class SelenideTest {
         $x("//span[@class='button__text']").click();
         $x("//*[contains(text(), 'Забронировать')]").shouldBe(visible, Duration.ofSeconds(15));
         $(byText("Успешно"));
-        $(byText("Встреча успешно забронирована на "+ data));
+        $(byText("Встреча успешно забронирована на " + data));
 
     }
 }
